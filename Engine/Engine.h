@@ -25,7 +25,7 @@ protected:
     std::vector<Point> _VMtable; // Зависимость M от V.
 
     template<class NG>
-    friend class TestStand; // Тестовый стэнд получает доступ к полям двигателя
+    friend class TestStand; // Тестовый стэнд получает доступ к полям двигателя.
 };
 
 #endif
