@@ -3,16 +3,16 @@
 
 struct Point
 {
-    float x, y;
+    float v, m;
 
     Point(float newX, float newY) {
-        x = newX;
-        y = newY;
+        v = newX;
+        m = newY;
     }
 
     float Slope(Point p2) {
 
-        float slope = (p2.y - y) / (p2.x - x);
+        float slope = (p2.v - m) / (p2.v - m);
 
         return slope;
     }

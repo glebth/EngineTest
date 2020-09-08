@@ -21,11 +21,9 @@ ICEngine::ICEngine(float I, std::vector<float> Mtable, std::vector<float> Vtable
 }
 
 float ICEngine::Vh() {
-    printf("Vh == %f \n", ( _M * _Hm + _V * _V * _Hv ));
     return ( _M * _Hm + _V * _V * _Hv );
 }
 
 float ICEngine::Vc(float tAmbient, float tEngine) {
-    printf("Vc == %f \t", ( _C * (tAmbient - tEngine)) );
     return ( _C * (tAmbient - tEngine) );
 }

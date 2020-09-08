@@ -4,7 +4,8 @@
 #include "TestStand.h"
 
 int main() {
-    std::cout << "Hello engine!" << std::endl;
+
+    std::cout << "Enter ambient temperature:" << std::endl;
 
     float tAmbient = -10.0f;
 
@@ -22,7 +23,15 @@ int main() {
     );
 
     TestStand<ICEngine> stand(testingEngine, tAmbient);
-    printf("Vremya == %f \n", stand.StartEngineTest());
+
+    float ohTime = stand.StartEngineTest();
+
+    if (ohTime < WAIT_TIME) {
+        std::cout << "Time to overheat == " << ohTime << std::endl;
+    }
+    else {
+        std::cout << "No overheat (> 1000)" << std::endl;
+    }
     
     return 0;
 }

@@ -17,13 +17,6 @@ public:
         
     float Vh() override;
     float Vc(float tAmbient, float tEngine) override;
-
-    // inline float GetToh() { return _Toh; }
-    // inline float GetM() { return _M; }
-    // inline float GetV() { return _V; }
-    // inline float GetI() { return _I; }
-    // inline std::vector<float> &GetMtable() { return _Mtable; }
-    // inline std::vector<float> &GetVtable() { return _Vtable; }
 };
 
 #endif

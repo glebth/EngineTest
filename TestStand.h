@@ -3,6 +3,9 @@
 
 #include "stdio.h"
 
+const int WAIT_TIME = 1000;
+const float ERROR_COEF = 0.1f;
+
 template<class NG>
 class TestStand {
 public:
@@ -32,34 +35,33 @@ float TestStand<NG>::StartEngineTest() {
 
     int vmIndex = 0;
     
-    while (time < 1000 && overheat > 0.1f) {
+    while (time < WAIT_TIME && overheat > ERROR_COEF) {
 
         ++time;
 
-        engine->_V = engine->_VMtable[vmIndex].x + a * time;
+        engine->_V += a * time;
 
-        if (engine->_V < engine->_VMtable.back().x) {
+        if (engine->_V < engine->_VMtable.back().v) {
 
-            if (vmIndex + 2 < engine->_VMtable.size() && engine->_V > engine->_VMtable[vmIndex+1].x) {
+            if (vmIndex + 2 < engine->_VMtable.size() && engine->_V > engine->_VMtable[vmIndex+1].v) {
                 vmIndex += 1;
             }
 
-            // Линейная функция : M = slope * V + b
+            // Линейная функция : M = slope * V + b.
             float slope = engine->_VMtable[vmIndex].Slope(engine->_VMtable[vmIndex + 1]);
-            float b = engine->_VMtable[vmIndex].y - slope * engine->_VMtable[vmIndex].x;
+            float b = engine->_VMtable[vmIndex].m - slope * engine->_VMtable[vmIndex].v;
             engine->_M = slope * engine->_V + b;
         }
         else {
-            engine->_V = engine->_VMtable.back().x;
-            engine->_M = engine->_VMtable.back().y;
+            engine->_V = engine->_VMtable.back().v;
+            engine->_M = engine->_VMtable.back().m;
         }
-        
+
         tEngine += (engine->Vc(tAmbient, tEngine) + engine->Vh()) * time;
 
         a = engine->_M / engine->_I;
         overheat = engine->_Toh - tEngine;
     }
-
 
     return time;
 }
