@@ -1,14 +1,14 @@
-#include <stdio.h>
+#include <iostream>
 
 #include "Engine/ICEngine.h"
 #include "TestStand.h"
 
 int main() {
-    printf("Hello engine! \n");
+    std::cout << "Hello engine!" << std::endl;
 
-    float tAmbient = 0.0f;
+    float tAmbient = -10.0f;
 
-    scanf("%f", tAmbient);
+    std::cin >> tAmbient;
 
     ICEngine testingEngine(
         10,
@@ -21,7 +21,7 @@ int main() {
         tAmbient
     );
 
-    TestStand<ICEngine> stand(testingEngine, 20);
+    TestStand<ICEngine> stand(testingEngine, tAmbient);
     printf("Vremya == %f \n", stand.StartEngineTest());
     
     return 0;

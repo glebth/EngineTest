@@ -16,7 +16,7 @@ public:
         float tAmbient);
         
     float Vh() override;
-    float Vc(double tAmbient, double tEngine) override;
+    float Vc(float tAmbient, float tEngine) override;
 
     // inline float GetToh() { return _Toh; }
     // inline float GetM() { return _M; }

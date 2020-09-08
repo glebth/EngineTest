@@ -10,7 +10,7 @@ class Engine {
 public:
     Engine(){};
     virtual float Vh() = 0;
-    virtual float Vc(double tAmbient, double tEngine) = 0;
+    virtual float Vc(float tAmbient, float tEngine) = 0;
 protected:
     float _I; // Момент инерции.
     float _Toh; // Температура перегрева.
