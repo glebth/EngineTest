@@ -4,7 +4,7 @@
 #include "stdio.h"
 
 const int WAIT_TIME = 3600;
-const float ERROR_COEF = 0.1f;
+const float ERROR_COEF = 1.5f;
 
 template<class NG>
 class TestStand {

@@ -12,7 +12,7 @@ struct Point
 
     float Slope(Point p2) {
 
-        float slope = (p2.v - m) / (p2.v - m);
+        float slope = (p2.m - m) / (p2.v - v);
 
         return slope;
     }
