@@ -3,7 +3,7 @@
 
 #include "stdio.h"
 
-const int WAIT_TIME = 1000;
+const int WAIT_TIME = 3600;
 const float ERROR_COEF = 0.1f;
 
 template<class NG>
@@ -39,11 +39,11 @@ float TestStand<NG>::StartEngineTest() {
 
         ++time;
 
-        engine->_V += a * time;
+        engine->_V += a; // * dtime = 1 sec.
 
         if (engine->_V < engine->_VMtable.back().v) {
 
-            if (vmIndex + 2 < engine->_VMtable.size() && engine->_V > engine->_VMtable[vmIndex+1].v) {
+            while (vmIndex + 2 < engine->_VMtable.size() && engine->_V > engine->_VMtable[vmIndex+1].v) {
                 vmIndex += 1;
             }
 
@@ -57,7 +57,7 @@ float TestStand<NG>::StartEngineTest() {
             engine->_M = engine->_VMtable.back().m;
         }
 
-        tEngine += (engine->Vc(tAmbient, tEngine) + engine->Vh()) * time;
+        tEngine += (engine->Vc(tAmbient, tEngine) + engine->Vh());
 
         a = engine->_M / engine->_I;
         overheat = engine->_Toh - tEngine;
