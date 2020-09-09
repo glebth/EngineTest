@@ -30,7 +30,7 @@ int main() {
         std::cout << "Time to overheat == " << ohTime << std::endl;
     }
     else {
-        std::cout << "No overheat (> 1000)" << std::endl;
+        std::cout << "No overheat (> 3600 sec.)" << std::endl;
     }
     
     return 0;
